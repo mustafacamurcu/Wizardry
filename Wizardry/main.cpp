@@ -6,10 +6,36 @@
 //  Copyright © 2017 Mustafa Camurcu. All rights reserved.
 //
 
+#include <string>
 #include <iostream>
+#include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
+#include "Texture.h"
+#include "Game.h"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+
+int mario_x = 100;
+
+using namespace std;
+
+int main() {
+    //initialize a game object
+    Game game;
+    
+    //initialize sdl
+    if( !game.initSDL() ) {
+        std::cout << "Init failed!" << std::endl;
+        return 1;
+    }
+    
+    //load images
+    game.loadImg();
+    
+    //start the game
+    game.play();
+    
+    //safely close the game
+    game.close();
+    
     return 0;
 }

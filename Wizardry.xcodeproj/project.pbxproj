@@ -8,23 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		04944C8F1E2558AE0034BD5C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04944C8E1E2558AE0034BD5C /* main.cpp */; };
+		04944C961E2559DF0034BD5C /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04944C951E2559DF0034BD5C /* Texture.cpp */; };
+		04944C9B1E255CAF0034BD5C /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04944C981E255CAF0034BD5C /* SDL2_image.framework */; };
+		04944C9C1E255CAF0034BD5C /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04944C991E255CAF0034BD5C /* SDL2_ttf.framework */; };
+		04944C9D1E255CAF0034BD5C /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04944C9A1E255CAF0034BD5C /* SDL2.framework */; };
+		04944CA21E25601C0034BD5C /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04944CA11E25601C0034BD5C /* Game.cpp */; };
+		04944CA61E2564C70034BD5C /* wizard.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 04944CA51E2564C70034BD5C /* wizard.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		04944C891E2558AE0034BD5C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = img;
+			dstSubfolderSpec = 7;
 			files = (
+				04944CA61E2564C70034BD5C /* wizard.png in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		04944C8B1E2558AE0034BD5C /* Wizardry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Wizardry; sourceTree = BUILT_PRODUCTS_DIR; };
 		04944C8E1E2558AE0034BD5C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		04944C951E2559DF0034BD5C /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		04944C971E2559EA0034BD5C /* Texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Texture.h; sourceTree = "<group>"; };
+		04944C981E255CAF0034BD5C /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		04944C991E255CAF0034BD5C /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		04944C9A1E255CAF0034BD5C /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		04944CA11E25601C0034BD5C /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		04944CA31E2560360034BD5C /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		04944CA41E2562DA0034BD5C /* Env.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Env.h; sourceTree = "<group>"; };
+		04944CA51E2564C70034BD5C /* wizard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wizard.png; path = img/wizard.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04944C9B1E255CAF0034BD5C /* SDL2_image.framework in Frameworks */,
+				04944C9C1E255CAF0034BD5C /* SDL2_ttf.framework in Frameworks */,
+				04944C9D1E255CAF0034BD5C /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +60,10 @@
 		04944C821E2558AE0034BD5C = {
 			isa = PBXGroup;
 			children = (
+				04944CA51E2564C70034BD5C /* wizard.png */,
+				04944C981E255CAF0034BD5C /* SDL2_image.framework */,
+				04944C991E255CAF0034BD5C /* SDL2_ttf.framework */,
+				04944C9A1E255CAF0034BD5C /* SDL2.framework */,
 				04944C8D1E2558AE0034BD5C /* Wizardry */,
 				04944C8C1E2558AE0034BD5C /* Products */,
 			);
@@ -58,6 +81,11 @@
 			isa = PBXGroup;
 			children = (
 				04944C8E1E2558AE0034BD5C /* main.cpp */,
+				04944CA41E2562DA0034BD5C /* Env.h */,
+				04944C951E2559DF0034BD5C /* Texture.cpp */,
+				04944C971E2559EA0034BD5C /* Texture.h */,
+				04944CA11E25601C0034BD5C /* Game.cpp */,
+				04944CA31E2560360034BD5C /* Game.h */,
 			);
 			path = Wizardry;
 			sourceTree = "<group>";
@@ -119,6 +147,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				04944C8F1E2558AE0034BD5C /* main.cpp in Sources */,
+				04944C961E2559DF0034BD5C /* Texture.cpp in Sources */,
+				04944CA21E25601C0034BD5C /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +239,10 @@
 		04944C931E2558AE0034BD5C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -216,6 +250,10 @@
 		04944C941E2558AE0034BD5C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
