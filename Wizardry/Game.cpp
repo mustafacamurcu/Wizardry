@@ -15,11 +15,27 @@
 Game::Game() { }
 
 void Game::tick(double dt) {
+    player_->move(dt);
     
+    for(std::vector<Projectile*>::iterator it = projectiles_.begin() ; it != projectiles_.end() ; ++it) {
+        (*it)->move(dt);
+    }
+}
+
+void Game::shootFireball() {
+    Texture* texture = new Texture(Env::PLAYER_WIDTH, Env::PLAYER_HEIGHT);
+    texture->loadFromFile("img/fireball.png", renderer_);
+    
+    projectiles_.push_back(player_->generateProjectile(texture));
 }
 
 void Game::play() {
+    player_ = new Player(Position(100.0,100.0));
+    player_->setTexture(playerTexture_);
+    
     bool quit = false;
+    Uint32 lastTime = SDL_GetTicks();
+    
     while(!quit) {
         SDL_Event e;
         while( SDL_PollEvent( &e ) != 0 )
@@ -37,25 +53,68 @@ void Game::play() {
                     case SDLK_ESCAPE:
                         quit = true;
                         break;
-                    case SDLK_p:
-                        Game::play();
+                    case SDLK_DOWN:
+                        player_->addDir(Dir::South);
+                        break;
+                    case SDLK_UP:
+                        player_->addDir(Dir::North);
+                        break;
+                    case SDLK_RIGHT:
+                        player_->addDir(Dir::East);
+                        break;
+                    case SDLK_LEFT:
+                        player_->addDir(Dir::West);
+                        break;
+                    case SDLK_SPACE:
+                        Game::shootFireball();
                         break;
                 }
             }
+            else if( e.type == SDL_KEYUP )
+            {
+                //Select surfaces based on key press
+                switch( e.key.keysym.sym )
+                {
+                    case SDLK_DOWN:
+                        player_->removeDir(Dir::South);
+                        break;
+                    case SDLK_UP:
+                        player_->removeDir(Dir::North);
+                        break;
+                    case SDLK_RIGHT:
+                        player_->removeDir(Dir::East);
+                        break;
+                    case SDLK_LEFT:
+                        player_->removeDir(Dir::West);
+                        break;
+                }
+            }
+            
         }
         
-        Game::render();
+        Uint32 timeNow = SDL_GetTicks();
         
+        Game::tick((timeNow - lastTime)/1000.0f);
+        
+        std::cout << (timeNow - lastTime) << std::endl;
+        
+        lastTime = timeNow;
+        
+        Game::render();
     }
 }
 
 void Game::render() {
     //Clear screen
-    SDL_RenderClear( renderer_ );
+    SDL_RenderClear(renderer_);
     
-    playerTexture_->render(100, 100, renderer_);
+    player_->render(renderer_);
+    
+    for(std::vector<Projectile*>::iterator it = projectiles_.begin() ; it != projectiles_.end() ; ++it) {
+        (*it)->render(renderer_);
+    }
     //Update screen
-    SDL_RenderPresent( renderer_ );
+    SDL_RenderPresent(renderer_);
 }
 
 

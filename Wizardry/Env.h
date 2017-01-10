@@ -19,6 +19,11 @@ public:
     
     const static int PLAYER_HEIGHT= 100;
     const static int PLAYER_WIDTH = 100;
+    const static int PLAYER_SPEED = 100;
+    
+    const static int PROJECTILE_SPEED = 200;
+    const static int PROJECTILE_WIDTH = 80;
+    const static int PROJECTILE_HEIGHT = 80;
 };
 
 /**
