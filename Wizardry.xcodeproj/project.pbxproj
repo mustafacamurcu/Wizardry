@@ -18,6 +18,8 @@
 		04944CAD1E25738D0034BD5C /* Position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04944CAC1E25738D0034BD5C /* Position.cpp */; };
 		04944CB01E257C1D0034BD5C /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04944CAF1E257C1D0034BD5C /* Projectile.cpp */; };
 		04944CB31E2585FD0034BD5C /* fireball.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 04944CB21E2585FD0034BD5C /* fireball.png */; };
+		04944CB51E25E0CF0034BD5C /* lightning.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 04944CB41E25E0CE0034BD5C /* lightning.png */; };
+		04944CB71E25E2C10034BD5C /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04944CB61E25E2C10034BD5C /* Animation.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +29,7 @@
 			dstPath = img;
 			dstSubfolderSpec = 7;
 			files = (
+				04944CB51E25E0CF0034BD5C /* lightning.png in CopyFiles */,
 				04944CB31E2585FD0034BD5C /* fireball.png in CopyFiles */,
 				04944CA61E2564C70034BD5C /* wizard.png in CopyFiles */,
 			);
@@ -53,6 +56,9 @@
 		04944CAF1E257C1D0034BD5C /* Projectile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
 		04944CB11E257C260034BD5C /* Projectile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Projectile.h; sourceTree = "<group>"; };
 		04944CB21E2585FD0034BD5C /* fireball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fireball.png; path = img/fireball.png; sourceTree = "<group>"; };
+		04944CB41E25E0CE0034BD5C /* lightning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lightning.png; path = img/lightning.png; sourceTree = "<group>"; };
+		04944CB61E25E2C10034BD5C /* Animation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animation.cpp; sourceTree = "<group>"; };
+		04944CB81E25E2C90034BD5C /* Animation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,7 @@
 		04944C821E2558AE0034BD5C = {
 			isa = PBXGroup;
 			children = (
+				04944CB41E25E0CE0034BD5C /* lightning.png */,
 				04944CB21E2585FD0034BD5C /* fireball.png */,
 				04944CA51E2564C70034BD5C /* wizard.png */,
 				04944C981E255CAF0034BD5C /* SDL2_image.framework */,
@@ -105,6 +112,8 @@
 				04944CAE1E25739B0034BD5C /* Position.h */,
 				04944CAF1E257C1D0034BD5C /* Projectile.cpp */,
 				04944CB11E257C260034BD5C /* Projectile.h */,
+				04944CB61E25E2C10034BD5C /* Animation.cpp */,
+				04944CB81E25E2C90034BD5C /* Animation.h */,
 			);
 			path = Wizardry;
 			sourceTree = "<group>";
@@ -168,6 +177,7 @@
 				04944CA81E2572E00034BD5C /* Player.cpp in Sources */,
 				04944C8F1E2558AE0034BD5C /* main.cpp in Sources */,
 				04944CB01E257C1D0034BD5C /* Projectile.cpp in Sources */,
+				04944CB71E25E2C10034BD5C /* Animation.cpp in Sources */,
 				04944C961E2559DF0034BD5C /* Texture.cpp in Sources */,
 				04944CA21E25601C0034BD5C /* Game.cpp in Sources */,
 				04944CAD1E25738D0034BD5C /* Position.cpp in Sources */,

@@ -8,6 +8,7 @@
 
 
 #include <iostream>
+#include <vector>
 #include "Game.h"
 #include "Env.h"
 #include "Texture.h"
@@ -23,10 +24,26 @@ void Game::tick(double dt) {
 }
 
 void Game::shootFireball() {
-    Texture* texture = new Texture(Env::PLAYER_WIDTH, Env::PLAYER_HEIGHT);
+    Texture* texture = new Texture();
     texture->loadFromFile("img/fireball.png", renderer_);
     
     projectiles_.push_back(player_->generateProjectile(texture));
+}
+
+void Game::shootLightning() {
+    Texture* texture = new Texture();
+    texture->loadFromFile("img/lightning.png", renderer_);
+    texture->setScale(3);
+    animations_.push_back(new Animation(50, player_->getPositionPtr(), texture, Position(5,-20)));
+}
+
+void Game::addKey(SDL_Keycode keycode) {
+    keys_.push(keycode);
+    if(keys_.size() > Env::KEY_LIMIT) {
+        keys_.pop();
+    }
+    
+    lastKeyTime_ = SDL_GetTicks();
 }
 
 void Game::play() {
@@ -69,6 +86,10 @@ void Game::play() {
                         Game::shootFireball();
                         break;
                 }
+                
+                if( e.key.keysym.sym >= 97 && e.key.keysym.sym <= 122 ) {
+                    Game::addKey(e.key.keysym.sym);
+                }
             }
             else if( e.type == SDL_KEYUP )
             {
@@ -96,11 +117,54 @@ void Game::play() {
         
         Game::tick((timeNow - lastTime)/1000.0f);
         
+        if( timeNow - lastKeyTime_ > Env::KEY_TIME ) {
+            keys_ = {};
+        }
+        
+        std::queue<SDL_Keycode> s = keys_;
+        
+        while(!s.empty())
+        {
+            const char* w = SDL_GetKeyName(s.front());
+            std::cout << w << " ";
+            s.pop();
+        }
+        std::cout << std::endl;
+        
         std::cout << (timeNow - lastTime) << std::endl;
         
         lastTime = timeNow;
-        
+        Game::checkSpells();
         Game::render();
+    }
+}
+
+void Game::checkSpells() {
+    std::vector<std::string> fire = {"F", "I", "R", "E"};
+    std::vector<std::string> bzzt = {"B", "Z", "Z", "T"};
+    
+    std::queue<SDL_Keycode> s = keys_;
+    std::vector<std::string> chars;
+    while(!s.empty())
+    {
+        std::string w(SDL_GetKeyName(s.front()), 0, 2);
+        chars.push_back(w);
+        s.pop();
+    }
+    
+    for(int i = 0 ; i < chars.size() ; i++) {
+        std::cout << chars[i];
+    }
+    std::cout << std::endl;
+    
+    if(chars.size() >= fire.size() && std::equal(chars.end()-fire.size(), chars.end(), fire.begin())) {
+        Game::shootFireball();
+        keys_ = {};
+    }
+    
+    if(chars.size() >= bzzt.size() && std::equal(chars.end()-bzzt.size(), chars.end(), bzzt.begin())) {
+        Game::shootLightning();
+        keys_ = {};
     }
 }
 
@@ -113,6 +177,17 @@ void Game::render() {
     for(std::vector<Projectile*>::iterator it = projectiles_.begin() ; it != projectiles_.end() ; ++it) {
         (*it)->render(renderer_);
     }
+    
+    for(std::vector<Animation*>::iterator it = animations_.begin() ; it != animations_.end() ; ++it) {
+        (*it)->render(renderer_);
+    }
+    
+    if(animations_.size() > 0) {
+        animations_.erase(std::remove_if(animations_.begin(),
+                                         animations_.end(),
+                                         [](Animation* a){return a->done();}), animations_.end());
+    }
+    
     //Update screen
     SDL_RenderPresent(renderer_);
 }
@@ -126,7 +201,7 @@ bool Game::initSDL() {
     }
     else
     {
-        window_ = SDL_CreateWindow( "Super Mario Bros.", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, Env::SCREEN_WIDTH, Env::SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        window_ = SDL_CreateWindow( "Wizardry", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, Env::SCREEN_WIDTH, Env::SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
         if( window_ == NULL )
         {
             std::cout << "Window could not be created! SDL_Error: " << SDL_GetError() << std::endl;

@@ -34,6 +34,10 @@ void Player::render(SDL_Renderer* renderer) {
     texture_->render(pos_.x-Env::PLAYER_WIDTH/2, pos_.y-Env::PLAYER_HEIGHT/2, renderer);
 }
 
+Position* Player::getPositionPtr() {
+    return &pos_;
+}
+
 void Player::setTexture(Texture* texture) {
     texture_ = texture;
 }

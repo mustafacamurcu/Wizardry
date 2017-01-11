@@ -55,6 +55,8 @@ public:
     void setTexture(Texture* texture);
     
     Projectile* generateProjectile(Texture* texture);
+    
+    Position* getPositionPtr();
 private:
     /*Set of Directions*/
     std::set<Dir> dirs_;

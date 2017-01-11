@@ -15,6 +15,8 @@
 #include <SDL2_ttf/SDL_ttf.h>
 #include "Texture.h"
 #include "Player.h"
+#include <queue>
+#include "Animation.h"
 
 /**
  * Game. Represents a Game
@@ -43,11 +45,6 @@ public:
      */
     void play();
     /**
-     * set the path of the font to be used
-     * @param fontPath, path of the font
-     */
-    void setFontPath(std::string fontPath);
-    /**
      * start the menu
      */
     void menu();
@@ -67,6 +64,12 @@ public:
     void close();
     
     void shootFireball();
+    
+    void shootLightning();
+    
+    void addKey(SDL_Keycode keycode);
+    
+    void checkSpells();
 private:
     /*Window*/
     SDL_Window* window_ = NULL;
@@ -82,6 +85,12 @@ private:
     Texture* playerTexture_;
     /*Image for the Laser*/
     Texture* laserTexture_;
+    /*keys*/
+    std::queue<SDL_Keycode> keys_;
+    /*last key time*/
+    Uint32 lastKeyTime_;
+    /*animations*/
+    std::vector<Animation*> animations_;
 };
 
 #endif /* Game_h */

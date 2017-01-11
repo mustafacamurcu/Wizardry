@@ -24,6 +24,9 @@ public:
     const static int PROJECTILE_SPEED = 200;
     const static int PROJECTILE_WIDTH = 80;
     const static int PROJECTILE_HEIGHT = 80;
+    
+    const static int KEY_LIMIT = 5;
+    const static int KEY_TIME = 1000;
 };
 
 /**
