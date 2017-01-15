@@ -34,7 +34,7 @@ void Game::shootLightning() {
     Texture* texture = new Texture();
     texture->loadFromFile("img/lightning.png", renderer_);
     texture->setScale(3);
-    animations_.push_back(new Animation(50, player_->getPositionPtr(), texture, Position(5,-20)));
+    animations_.push_back(new Animation(50, player_->getPositionPtr(), texture, Position(15,-25)));
 }
 
 void Game::addKey(SDL_Keycode keycode) {
@@ -47,7 +47,7 @@ void Game::addKey(SDL_Keycode keycode) {
 }
 
 void Game::play() {
-    player_ = new Player(Position(100.0,100.0));
+    player_ = new Player(Position(0,0));
     player_->setTexture(playerTexture_);
     
     bool quit = false;
@@ -188,6 +188,9 @@ void Game::render() {
                                          [](Animation* a){return a->done();}), animations_.end());
     }
     
+    
+    //groundTexture_->render(0, 0, renderer_);
+    
     //Update screen
     SDL_RenderPresent(renderer_);
 }
@@ -252,6 +255,13 @@ void Game::close() {
 }
 
 void Game::loadImg() {
-    playerTexture_ = new Texture(Env::PLAYER_WIDTH, Env::PLAYER_HEIGHT);
+    playerTexture_ = new Texture();
     playerTexture_->loadFromFile("img/wizard.png", renderer_);
+    playerTexture_->setScale(2);
+    
+    
+    groundTexture_ = new Texture(12,4);
+    groundTexture_->loadFromFile("img/ground.png", renderer_);
+    groundTexture_->setScale(100);
+    
 }

@@ -21,6 +21,7 @@ public:
     bool done();
 private:
     int frames_;
+    int totalFrames_;
     Texture* texture_;
     Position* pos_;
     Position transform_;

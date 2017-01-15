@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0480FC501E2BFAE500972164 /* ground.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0480FC4F1E2BFAE500972164 /* ground.png */; };
 		04944C8F1E2558AE0034BD5C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04944C8E1E2558AE0034BD5C /* main.cpp */; };
 		04944C961E2559DF0034BD5C /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04944C951E2559DF0034BD5C /* Texture.cpp */; };
 		04944C9B1E255CAF0034BD5C /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04944C981E255CAF0034BD5C /* SDL2_image.framework */; };
@@ -29,6 +30,7 @@
 			dstPath = img;
 			dstSubfolderSpec = 7;
 			files = (
+				0480FC501E2BFAE500972164 /* ground.png in CopyFiles */,
 				04944CB51E25E0CF0034BD5C /* lightning.png in CopyFiles */,
 				04944CB31E2585FD0034BD5C /* fireball.png in CopyFiles */,
 				04944CA61E2564C70034BD5C /* wizard.png in CopyFiles */,
@@ -38,6 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0480FC4F1E2BFAE500972164 /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ground.png; path = img/ground.png; sourceTree = "<group>"; };
 		04944C8B1E2558AE0034BD5C /* Wizardry */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Wizardry; sourceTree = BUILT_PRODUCTS_DIR; };
 		04944C8E1E2558AE0034BD5C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		04944C951E2559DF0034BD5C /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 		04944C821E2558AE0034BD5C = {
 			isa = PBXGroup;
 			children = (
+				0480FC4F1E2BFAE500972164 /* ground.png */,
 				04944CB41E25E0CE0034BD5C /* lightning.png */,
 				04944CB21E2585FD0034BD5C /* fireball.png */,
 				04944CA51E2564C70034BD5C /* wizard.png */,
@@ -309,6 +313,7 @@
 				04944C941E2558AE0034BD5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

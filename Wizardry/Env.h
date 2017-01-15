@@ -17,9 +17,12 @@ public:
     const static int SCREEN_HEIGHT = 500;
     const static int SCREEN_WIDTH = 800;
     
-    const static int PLAYER_HEIGHT= 100;
-    const static int PLAYER_WIDTH = 100;
+    const static int PLAYER_HEIGHT= 0;
+    const static int PLAYER_WIDTH = 0;
     const static int PLAYER_SPEED = 100;
+    
+    const static int GROUND_HEIGHT= 0;
+    const static int GROUND_WIDTH = 0;
     
     const static int PROJECTILE_SPEED = 200;
     const static int PROJECTILE_WIDTH = 80;

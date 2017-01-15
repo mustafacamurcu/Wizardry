@@ -79,12 +79,10 @@ private:
     Player* player_;
     /*Projectiles*/
     std::vector<Projectile*> projectiles_;
-    /*Image for the Alien*/
-    Texture* alienTexture_;
+    /*Image for the Ground*/
+    Texture* groundTexture_;
     /*Image for the Player*/
     Texture* playerTexture_;
-    /*Image for the Laser*/
-    Texture* laserTexture_;
     /*keys*/
     std::queue<SDL_Keycode> keys_;
     /*last key time*/
