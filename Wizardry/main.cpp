@@ -13,9 +13,6 @@
 #include "Texture.h"
 #include "Game.h"
 
-
-int mario_x = 100;
-
 using namespace std;
 
 int main() {
