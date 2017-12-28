@@ -11,17 +11,20 @@
 #include "Animation.h"
 #include <algorithm>
 
-Animation::Animation(int frames, Position* pos, Texture* texture, Position transform) {
+Animation::Animation(int frames, Player* player, double x, double y, Texture* texture,
+                     std::function<SDL_Rect(int,Texture*)> render) {
     frames_ = frames;
     totalFrames_ = frames;
-    pos_ = pos;
+    x_ = x;
+    y_ = y;
     texture_ = texture;
-    transform_ = transform;
+    render_ = render;
+    player_ = player;
 }
 
 void Animation::render(SDL_Renderer* renderer) {
-    SDL_Rect r = {0,0,std::min(int(texture_->getWidth()*(totalFrames_-frames_)/(totalFrames_*0.8f)), texture_->getWidth()),texture_->getHeight()};
-    texture_->render(pos_->x+transform_.x, pos_->y+transform_.y, renderer, &r);
+    SDL_Rect r = render_(frames_, texture_);
+    texture_->render(player_->x()+x_, player_->y()+y_, renderer, &r);
     frames_ -= 1;
 }
 

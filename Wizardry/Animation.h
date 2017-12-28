@@ -11,10 +11,12 @@
 
 #include "Texture.h"
 #include "Position.h"
+#include "Player.h"
 
 class Animation {
 public:
-    Animation(int frames, Position* pos, Texture* texture, Position transform = Position());
+    Animation(int frames, Player* player, double x, double y, Texture* texture,
+              std::function<SDL_Rect(int,Texture*)> render);
     
     void render(SDL_Renderer* renderer);
     
@@ -23,8 +25,10 @@ private:
     int frames_;
     int totalFrames_;
     Texture* texture_;
-    Position* pos_;
-    Position transform_;
+    double x_;
+    double y_;
+    Player* player_;
+    std::function<SDL_Rect(int,Texture*)> render_;
 };
 
 #endif /* Animation_h */

@@ -66,6 +66,7 @@ public:
     void shootFireball();
     
     void shootLightning();
+    void shootLightning2();
     
     void addKey(SDL_Keycode keycode);
     
@@ -77,18 +78,30 @@ private:
     SDL_Renderer* renderer_ = NULL;
     /*Player*/
     Player* player_;
+    /*Zombie*/
+    Player* zombie_;
     /*Projectiles*/
     std::vector<Projectile*> projectiles_;
-    /*Image for the Ground*/
-    Texture* groundTexture_;
-    /*Image for the Player*/
-    Texture* playerTexture_;
     /*keys*/
     std::queue<SDL_Keycode> keys_;
     /*last key time*/
     Uint32 lastKeyTime_;
     /*animations*/
     std::vector<Animation*> animations_;
+    
+    /* TEXTURES */
+    /*Image for the Ground*/
+    Texture* groundTexture_;
+    /*Image for the Player*/
+    Texture* playerTexture_;
+    /*Image for the Zombie*/
+    Texture* zombieTexture_;
+    
+    /* SPELLS */
+    /*Image for the Player*/
+    Texture* fireballTexture_;
+    /*Image for the Player*/
+    Texture* lightningTexture_;
 };
 
 #endif /* Game_h */

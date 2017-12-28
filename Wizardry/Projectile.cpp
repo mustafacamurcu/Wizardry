@@ -10,16 +10,29 @@
 #include "Projectile.h"
 #include "Position.h"
 
-Projectile::Projectile(Position pos, Texture* texture, std::set<Dir> dirs) {
-    pos_ = pos;
+Projectile::Projectile(double x, double y, double speed, Texture* texture, std::set<Dir> dirs) {
+    x_ = x;
+    y_ = y;
+    speed_ = speed;
     texture_ = texture;
     dirs_ = dirs;
 }
 
 void Projectile::move(double dt) {
-    pos_.move(dirs_, Env::PROJECTILE_SPEED, dt);
+    if( dirs_.count(North) && y_ - dt * speed_ > 0) {
+        y_ -= dt * speed_;
+    }
+    if( dirs_.count(South) && y_ + dt * speed_ < Env::SCREEN_HEIGHT ) {
+        y_ += speed_ * dt;
+    }
+    if( dirs_.count(East) && x_ + dt * speed_ < Env::SCREEN_WIDTH ) {
+        x_ += speed_ * dt;
+    }
+    if( dirs_.count(West) && x_ - dt * speed_ > 0 ) {
+        x_ -= speed_ * dt;
+    }
 }
 
 void Projectile::render(SDL_Renderer* renderer) {
-    texture_->render(pos_.x-Env::PLAYER_WIDTH /2, pos_.y-Env::PROJECTILE_HEIGHT/2, renderer);
+    texture_->render(x_-Env::PLAYER_WIDTH /2, y_-Env::PROJECTILE_HEIGHT/2, renderer);
 }

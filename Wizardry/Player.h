@@ -22,7 +22,7 @@ public:
     /**
      * Construct a Player
      */
-    Player(Position pos);
+    Player(double x, double y);
     /**
      * add the given direction to the set of directions
      * @param dir, direction
@@ -54,16 +54,20 @@ public:
      */
     void setTexture(Texture* texture);
     
-    Projectile* generateProjectile(Texture* texture);
+    Projectile* generateProjectile(Texture* texture, double dx, double dy, double speed);
     
-    Position* getPositionPtr();
+    double x();
+    double y();
+    
 private:
     /*Set of Directions*/
     std::set<Dir> dirs_;
     /*Position*/
-    Position pos_;
+    double x_;
+    double y_;
     /*Image Texture*/
     Texture* texture_;
+    int lastFrame_ = 0;
     
 };
 

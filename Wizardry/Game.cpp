@@ -17,6 +17,7 @@ Game::Game() { }
 
 void Game::tick(double dt) {
     player_->move(dt);
+    zombie_->move(dt);
     
     for(std::vector<Projectile*>::iterator it = projectiles_.begin() ; it != projectiles_.end() ; ++it) {
         (*it)->move(dt);
@@ -24,17 +25,15 @@ void Game::tick(double dt) {
 }
 
 void Game::shootFireball() {
-    Texture* texture = new Texture();
-    texture->loadFromFile("img/fireball.png", renderer_);
-    
-    projectiles_.push_back(player_->generateProjectile(texture));
+    projectiles_.push_back(player_->generateProjectile(fireballTexture_, 35, 55, 300));
 }
 
 void Game::shootLightning() {
-    Texture* texture = new Texture();
-    texture->loadFromFile("img/lightning.png", renderer_);
-    texture->setScale(3);
-    animations_.push_back(new Animation(50, player_->getPositionPtr(), texture, Position(15,-25)));
+    int totalFrames = 25;
+    std::function<SDL_Rect(int,Texture*)> lightning_render = [totalFrames](int frames, Texture* texture)->SDL_Rect{
+        return {0,32*((frames/5)%2),std::min(int(texture->getWidth()*(totalFrames-frames)/(totalFrames*0.3f)), texture->getWidth()),texture->getHeight()/2};
+    };
+    animations_.push_back(new Animation(totalFrames, player_, 40, -7, lightningTexture_, lightning_render));
 }
 
 void Game::addKey(SDL_Keycode keycode) {
@@ -47,8 +46,12 @@ void Game::addKey(SDL_Keycode keycode) {
 }
 
 void Game::play() {
-    player_ = new Player(Position(0,0));
+    player_ = new Player(300, 200);
     player_->setTexture(playerTexture_);
+    
+    zombie_ = new Player(500, 200);
+    zombie_->setTexture(zombieTexture_);
+    zombie_->addDir(Dir::West);
     
     bool quit = false;
     Uint32 lastTime = SDL_GetTicks();
@@ -84,6 +87,12 @@ void Game::play() {
                         break;
                     case SDLK_SPACE:
                         Game::shootFireball();
+                        break;
+                    case SDLK_1:
+                        Game::shootFireball();
+                        break;
+                    case SDLK_2:
+                        Game::shootLightning();
                         break;
                 }
                 
@@ -173,6 +182,7 @@ void Game::render() {
     SDL_RenderClear(renderer_);
     
     player_->render(renderer_);
+    zombie_->render(renderer_);
     
     for(std::vector<Projectile*>::iterator it = projectiles_.begin() ; it != projectiles_.end() ; ++it) {
         (*it)->render(renderer_);
@@ -259,9 +269,14 @@ void Game::loadImg() {
     playerTexture_->loadFromFile("img/wizard.png", renderer_);
     playerTexture_->setScale(2);
     
+    zombieTexture_ = new Texture();
+    zombieTexture_->loadFromFile("img/zombie.png", renderer_);
+    zombieTexture_->setScale(2);
     
-    groundTexture_ = new Texture(12,4);
-    groundTexture_->loadFromFile("img/ground.png", renderer_);
-    groundTexture_->setScale(100);
+    fireballTexture_ = new Texture();
+    fireballTexture_->loadFromFile("img/fireball.png", renderer_);
     
+    lightningTexture_ = new Texture();
+    lightningTexture_->loadFromFile("img/lightning.png", renderer_);
+    lightningTexture_->setScale(2);
 }

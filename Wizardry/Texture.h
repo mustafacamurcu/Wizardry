@@ -28,7 +28,7 @@ public:
     ~Texture();
     
     //Loads image at specified path
-    bool loadFromFile( std::string path, SDL_Renderer* renderer );
+    bool loadFromFile( std::string path, SDL_Renderer* renderer);
     
     //Loads the given text as image
     bool loadFromRenderedText( std::string textureText, SDL_Color textColor, SDL_Renderer* renderer, std::string fontPath);

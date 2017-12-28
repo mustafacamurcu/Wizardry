@@ -14,7 +14,7 @@
 
 class Projectile {
 public:
-    Projectile(Position pos, Texture* texture, std::set<Dir> dirs);
+    Projectile(double x, double y, double speed, Texture* texture, std::set<Dir> dirs);
     
     ~Projectile();
     
@@ -23,7 +23,9 @@ public:
     void render(SDL_Renderer* renderer);
     
 private:
-    Position pos_;
+    double x_;
+    double y_;
+    double speed_;
     Texture* texture_;
     std::set<Dir> dirs_;
 };

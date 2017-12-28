@@ -10,8 +10,9 @@
 
 #include <iostream>
 
-Player::Player(Position pos) {
-    pos_ = pos;
+Player::Player(double x, double y) {
+    x_ = x;
+    y_ = y;
 }
 
 void Player::addDir(Dir dir) {
@@ -27,23 +28,47 @@ void Player::tick(double dt) {
 }
 
 void Player::move(double dt) {
-    pos_.move(dirs_, Env::PLAYER_SPEED, dt);
+    bool moved = false;
+    if (dirs_.count(North) && y_ - dt * Env::PLAYER_SPEED > 0) {
+        y_ -= dt * Env::PLAYER_SPEED;
+        moved = true;
+    }
+    if (dirs_.count(South) && y_ + dt * Env::PLAYER_SPEED < Env::SCREEN_HEIGHT) {
+        y_ += Env::PLAYER_SPEED * dt;
+        moved = true;
+    }
+    if (dirs_.count(East) && x_ + dt * Env::PLAYER_SPEED < Env::SCREEN_WIDTH) {
+        x_ += Env::PLAYER_SPEED * dt;
+        moved = true;
+    }
+    if (dirs_.count(West) && x_ - dt * Env::PLAYER_SPEED > 0) {
+        x_ -= Env::PLAYER_SPEED * dt;
+        moved = true;
+    }
+    if (moved) {
+        lastFrame_ = (lastFrame_ + 1) % 20;
+    }
 }
 
 void Player::render(SDL_Renderer* renderer) {
-    texture_->render(pos_.x-Env::PLAYER_WIDTH/2, pos_.y-Env::PLAYER_HEIGHT/2, renderer);
+    SDL_Rect r = {0, 32*(lastFrame_/10), 31, 31};
+    texture_->render(x_-Env::PLAYER_WIDTH/2, y_-Env::PLAYER_HEIGHT/2, renderer, &r);
 }
 
-Position* Player::getPositionPtr() {
-    return &pos_;
+double Player::x() {
+    return x_;
+}
+
+double Player::y() {
+    return y_;
 }
 
 void Player::setTexture(Texture* texture) {
     texture_ = texture;
 }
 
-Projectile* Player::generateProjectile(Texture *texture) {
+Projectile* Player::generateProjectile(Texture *texture, double dx, double dy, double speed) {
     std::set<Dir> dirs;
     dirs.insert(Dir::East);
-    return new Projectile(pos_, texture, dirs);
+    return new Projectile(x_+dx, y_+dy, speed, texture, dirs);
 }
