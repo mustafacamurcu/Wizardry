@@ -64,9 +64,8 @@ public:
     void close();
     
     void shootFireball();
-    
     void shootLightning();
-    void shootLightning2();
+    void addZombie();
     
     void addKey(SDL_Keycode keycode);
     
@@ -79,7 +78,7 @@ private:
     /*Player*/
     Player* player_;
     /*Zombie*/
-    Player* zombie_;
+    std::vector<Player*> zombies_;
     /*Projectiles*/
     std::vector<Projectile*> projectiles_;
     /*keys*/

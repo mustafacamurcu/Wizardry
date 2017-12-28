@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0486EC951FF591670042F2A8 /* zombie.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0486EC8F1FF5875F0042F2A8 /* zombie.png */; };
 		04944C8F1E2558AE0034BD5C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04944C8E1E2558AE0034BD5C /* main.cpp */; };
 		04944C961E2559DF0034BD5C /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 04944C951E2559DF0034BD5C /* Texture.cpp */; };
 		04944C9B1E255CAF0034BD5C /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04944C981E255CAF0034BD5C /* SDL2_image.framework */; };
@@ -29,6 +30,7 @@
 			dstPath = img;
 			dstSubfolderSpec = 7;
 			files = (
+				0486EC951FF591670042F2A8 /* zombie.png in CopyFiles */,
 				04944CB51E25E0CF0034BD5C /* lightning.png in CopyFiles */,
 				04944CB31E2585FD0034BD5C /* fireball.png in CopyFiles */,
 				04944CA61E2564C70034BD5C /* wizard.png in CopyFiles */,

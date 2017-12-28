@@ -17,10 +17,17 @@ Game::Game() { }
 
 void Game::tick(double dt) {
     player_->move(dt);
-    zombie_->move(dt);
+    
+    for(std::vector<Player*>::iterator it = zombies_.begin() ; it != zombies_.end() ; ++it) {
+        (*it)->move(dt);
+    }
     
     for(std::vector<Projectile*>::iterator it = projectiles_.begin() ; it != projectiles_.end() ; ++it) {
         (*it)->move(dt);
+    }
+    
+    if ((int)(dt*1000.)%2) {
+        addZombie();
     }
 }
 
@@ -48,10 +55,6 @@ void Game::addKey(SDL_Keycode keycode) {
 void Game::play() {
     player_ = new Player(300, 200);
     player_->setTexture(playerTexture_);
-    
-    zombie_ = new Player(500, 200);
-    zombie_->setTexture(zombieTexture_);
-    zombie_->addDir(Dir::West);
     
     bool quit = false;
     Uint32 lastTime = SDL_GetTicks();
@@ -86,7 +89,7 @@ void Game::play() {
                         player_->addDir(Dir::West);
                         break;
                     case SDLK_SPACE:
-                        Game::shootFireball();
+                        Game::addZombie();
                         break;
                     case SDLK_1:
                         Game::shootFireball();
@@ -182,7 +185,10 @@ void Game::render() {
     SDL_RenderClear(renderer_);
     
     player_->render(renderer_);
-    zombie_->render(renderer_);
+    
+    for(std::vector<Player*>::iterator it = zombies_.begin() ; it != zombies_.end() ; ++it) {
+        (*it)->render(renderer_);
+    }
     
     for(std::vector<Projectile*>::iterator it = projectiles_.begin() ; it != projectiles_.end() ; ++it) {
         (*it)->render(renderer_);
@@ -255,6 +261,12 @@ bool Game::initSDL() {
     return true;
 }
 
+void Game::addZombie() {
+    Player* zombie = new Player(800, rand() % 500);
+    zombie->setTexture(zombieTexture_);
+    zombie->addDir(Dir::West);
+    zombies_.push_back(zombie);
+}
 
 void Game::close() {
     SDL_DestroyWindow(window_);
