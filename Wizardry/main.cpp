@@ -7,8 +7,6 @@
 //
 
 #include <string>
-#include <time.h>
-#include <stdlib.h>
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
@@ -20,8 +18,6 @@ using namespace std;
 int main() {
     //initialize a game object
     Game game;
-    
-    srand (time(NULL));
     
     //initialize sdl
     if( !game.initSDL() ) {
